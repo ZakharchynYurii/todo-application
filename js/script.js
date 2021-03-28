@@ -43,6 +43,18 @@ function getTasks() {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
 
+    if(tasks.length <= 0){
+        if(emptyList.classList.contains('d-none')){
+            emptyList.classList.remove('d-none');
+            emptyList.classList.add('d-block');
+        }
+    }else{
+        if(emptyList.classList.contains('d-block')){
+            emptyList.classList.remove('d-none');
+            emptyList.classList.add('d-none');
+        }
+    }
+
     tasks.forEach(task => {
         //create li element
         const li = document.createElement('li');
@@ -121,13 +133,6 @@ function storeTaskInLocalStorage(task){
     tasks.push(task)
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
-    if(taskList.children.length + 1 > 0){
-        if(emptyList.classList.contains('d-block')){
-            emptyList.classList.remove('d-block');
-            emptyList.classList.add('d-none');
-        }
-    }
 }
 
 function removeTask(e){
@@ -160,13 +165,6 @@ function removeTaskFromLocalStorage(taskItem){
     });
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
-    if(taskList.children.length < 1){
-        if(emptyList.classList.contains('d-none')){
-            emptyList.classList.remove('d-none');
-            emptyList.classList.add('d-block');
-        }
-    }
 }
 
 function filterTask(e){
