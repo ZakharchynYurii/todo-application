@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    background: #ffffff;
+}
+
+.p-1{padding: 1.5rem;}
+.p-2{padding: 2rem;}
+.p-3{padding: 3rem;}
+.py-1{padding: 1.5rem 0;}
+.py-2{padding: 2rem 0;}
+.py-3{padding: 3rem 0;}
+
+.text-center{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+.d-block{
+    display: block;
+}
+
+.d-none{
+    display: none;
+}
+
+/*Utility class*/
+.container{
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.card{
+    background: #333333;
+    color: #f3f3f3;
+    border-radius: 5px;
+}
+
+.far{
+    color: red;
+}
+
+/*app time*/
+.app-time{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.clock{
+    font-size: 1.5rem;
+    color: #888888;
+}
+
+/*app input*/
+.app-input{
+    margin: 1rem 0;
+    border-bottom: 1px solid #888888;
+    border-top: 1px solid #888888;
+}
+
+.app-form{
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+
+}
+
+input[type="text"]{
+    padding: .5rem;
+    border: none;
+}
+
+input[type="submit"]{
+    border: none;
+    border-left: 1px solid black;
+    background: #888888;
+    color: #f3f3f3;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background: #666666;
+}
+
+/*app task list*/
+.app-task-list{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #888888;
+}
+
+.app-task-title{
+    text-transform: uppercase;
+    padding-top: 1rem;
+}
+
+.filter{
+    border-bottom: 1px solid #888888;
+}
+
+input[id="filter"]{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.collection{
+    padding-top: 1rem;
+}
+
+.collection-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted #666666;
+}
+
+.list-empty{
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+
+
+
+
+
+
+
