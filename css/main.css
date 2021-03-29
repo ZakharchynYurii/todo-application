@@ -36,13 +36,13 @@ ul{
 .container{
     max-width: 500px;
     margin: 0 auto;
-    overflow: hidden;
+    height: 100vh;
 }
 
 .card{
     background: #333333;
     color: #f3f3f3;
-    border-radius: 5px;
+    min-height: 100%;
 }
 
 .far{
@@ -131,6 +131,7 @@ input[id="filter"]{
     text-transform: uppercase;
     text-align: center;
     padding-top: 1.5rem;
+    margin: 23.9vh 0;
 }
 
 

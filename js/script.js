@@ -1,22 +1,22 @@
-(function dayToday() {
+(function dateToday(){
     const dateDiv = document.querySelector('.date');
-    const daysArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+    const dateArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dateObj = new Date();
-    const dayNumber = dateObj.getDay();
+    const dateNumber = dateObj.getDay()
 
-    dateDiv.appendChild(document.createTextNode(daysArray[dayNumber]));
+    dateDiv.appendChild(document.createTextNode(dateArray[dateNumber]));
 } ())
 
-function timeNow(){
-    const clockDiv = document.querySelector('.clock');
+function timeNow() {
+    const divClock = document.querySelector('.clock');
 
     const dateObj = new Date();
     const hours = (dateObj.getHours() < 10) ? '0' + dateObj.getHours() : dateObj.getHours();
-    const minute = (dateObj.getMinutes() <  10) ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
+    const minutes = (dateObj.getMinutes() < 10) ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
     const seconds = (dateObj.getSeconds() < 10) ? '0' + dateObj.getSeconds() : dateObj.getSeconds();
 
-    clockDiv.innerHTML = `${hours}:${minute}:${seconds}`;
+    divClock.innerHTML = `${hours}:${minutes}:${seconds}`;
 }
 setInterval(timeNow, 1000);
 
@@ -26,17 +26,18 @@ const filter = document.querySelector('#filter');
 const emptyList = document.querySelector('.list-empty');
 const taskList = document.querySelector('.collection');
 
-loadEventListeners()
+loadEventListeners();
 
-function loadEventListeners() {
-    document.addEventListener('DOMContentLoaded', getTasks);
+function loadEventListeners(){
+    document.addEventListener('DOMContentLoaded', getTask);
     form.addEventListener('submit', addTask);
-    taskList.addEventListener('click', removeTask);
     filter.addEventListener('keyup', filterTask);
+    taskList.addEventListener('click', removeTask);
 }
 
-function getTasks() {
+function getTask(){
     let tasks;
+
     if(localStorage.getItem('tasks') === null){
         tasks = [];
     }else{
@@ -56,30 +57,30 @@ function getTasks() {
     }
 
     tasks.forEach(task => {
-        //create li element
+        //create li with collection item
         const li = document.createElement('li');
         //add class to li
         li.className = 'collection-item';
-        //append text input value to li
+        //append input text to li
         li.appendChild(document.createTextNode(task));
 
-        //create link a
+        //create a.link
         const link = document.createElement('a');
-        //add class to link
+        //add class link to a
         link.className = 'delete-icon';
         //inner icon to link
-        link.innerHTML = '<i class="far fa-trash-alt"></i>';
+        link.innerHTML = `<i class="far fa-trash-alt"></i>`
         //append link to li
         li.appendChild(link);
 
-        //append li to ul
+        //append li.collection-item to ul.collection
         taskList.appendChild(li);
-    });
+    })
 }
 
 function addTask(e){
     if(taskInput.value === ''){
-       taskInput.style.border = '2px solid red';
+        taskInput.style.border = '2px solid red'
     }
 
     if(taskList.children.length + 1 > 0){
@@ -90,39 +91,37 @@ function addTask(e){
     }
 
     if(taskInput.value !== ''){
-        taskInput.style.border = 'none';
+        taskInput.style.border = 'none'
 
-        //create li element
+        //create li with collection item
         const li = document.createElement('li');
         //add class to li
         li.className = 'collection-item';
-        //append text input value to li
+        //append input text to li
         li.appendChild(document.createTextNode(taskInput.value));
 
-        //create link a
+        //create a.link
         const link = document.createElement('a');
-        //add class to link
+        //add class link to a
         link.className = 'delete-icon';
         //inner icon to link
-        link.innerHTML = '<i class="far fa-trash-alt"></i>';
+        link.innerHTML = `<i class="far fa-trash-alt"></i>`
         //append link to li
         li.appendChild(link);
 
-        //append li to ul
+        //append li.collection-item to ul.collection
         taskList.appendChild(li);
 
-        //store in LocalStorage
-        storeTaskInLocalStorage(taskInput.value);
+        storeTaskToLocalStorage(taskInput.value);
 
         //clear task input
         taskInput.value = '';
-
     }
 
-    e.preventDefault()
+    e.preventDefault();
 }
 
-function storeTaskInLocalStorage(task){
+function storeTaskToLocalStorage(taskText){
     let tasks;
     if(localStorage.getItem('tasks') === null){
         tasks = [];
@@ -130,7 +129,7 @@ function storeTaskInLocalStorage(task){
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
 
-    tasks.push(task)
+    tasks.push(taskText);
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -159,22 +158,24 @@ function removeTaskFromLocalStorage(taskItem){
     }
 
     tasks.forEach((task, index) => {
-       if(taskItem.textContent === task){
-           tasks.splice(index, 1);
-       }
-    });
+        if(taskItem.firstChild.textContent === task){
+            tasks.splice(index, 1);
+        }
+    })
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function filterTask(e){
     const text = e.target.value.toLowerCase();
-    document.querySelectorAll('.collection-item').forEach(task => {
+
+    document.querySelectorAll('.collection-item').forEach(task =>{
         const taskText = task.firstChild.textContent;
+
         if(taskText.toLowerCase().includes(text)){
             task.style.display = 'flex';
         }else{
             task.style.display = 'none';
         }
-    })
+    });
 }
